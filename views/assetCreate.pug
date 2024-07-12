@@ -1,0 +1,77 @@
+doctype html
+html
+    head
+        title Asset Form
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            h1 {
+                text-align: center;
+            }
+            form {
+                //- max-width: 400px;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                background-color: #f9f9f9;
+                border-radius: 5px;
+            }
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 10px;
+            }
+            input[type="text"],
+            input[type="email"],
+             button[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            button[type="submit"] {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            button[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+    body
+        h1 Create Asset
+        form(action='/submitAsset' method='POST')
+            label(for='assetName') Asset Name:
+            input(type='text' id='assetName' name='assetName', required)
+
+            label(for='make') Make:
+            input(type='text' id='make' name='make')
+
+            label(for='model') Model:
+            input(type='text' id='model' name='model')
+
+            label(for='stockQty') StockQty:
+            input(type='text' id='stockQty' name='stockQty')
+
+            label(for='value') Unit Rate:
+            input(type='text' id='value' name='value')
+
+            label(for='uom') UOM:
+            select(id='uom' name='uom', required)
+                option(value='') Please Select
+                option(value='KG') KG
+                option(value='NOS') NOS
+                option(value='NO') NO
+                 
+            label(for='assetCategoryId') Asset Category:
+            select(id='assetCategoryId' name='assetCategoryId', required)
+                option(value='') Select a category
+                each category in categories
+                    option(value=category.id) #{category.categoryName}
+
+            button(type='submit') Submit

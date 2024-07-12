@@ -1,0 +1,124 @@
+doctype html
+html
+    head
+        title Employee List
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 20px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+
+            p {
+                text-align: center;
+                color: #666;
+            }
+
+            /* Table Styles */
+            table {
+                width: 80%;
+                margin: 20px auto;
+                border-collapse: collapse;
+                background-color: #fff;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .btn {
+                display: block;
+                width: 150px;
+                margin: 20px auto;
+                padding: 10px;
+                border: none;
+                background-color: #4CAF50;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+                text-align: center;
+                text-decoration: none;
+            }
+
+            .btn:hover {
+                background-color: #45a049;
+            }
+
+            .delete-link {
+                color: red;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+
+            .delete-link:hover {
+                text-decoration: underline;
+            }
+
+    body
+        h1 Employee List
+        if employees.length === 0
+            p No employees found.
+        else
+            table
+                thead
+                    tr
+                        th Name
+                        th Designation
+                        th Department
+                        th Actions
+                tbody
+                    each employee in employees
+                        tr
+                            td #{employee.firstName}  
+                            td #{employee.lastName}
+                            td #{employee.email}
+                            td
+                                a(href=`/editEmployee/${employee.id}`) Edit
+                                a(href=`#`, onclick=`deleteEmployee('${employee.id}')`, class='delete-link') Delete
+
+        button.btn(type='button', onclick="location.href='/empCreate'") Create Employee
+
+    script.
+        function deleteEmployee(employeeId) {
+            if (confirm('Are you sure you want to delete this employee?')) {
+                fetch(`/deleteEmployee/${employeeId}`, {
+                    method: 'POST', // Ensure this matches your backend route method (POST, DELETE, etc.)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Optionally, update the UI after successful deletion
+                        location.reload(); // Reload the page or update the employee list dynamically
+                    } else {
+                        throw new Error('Failed to delete employee');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting employee:', error);
+                    // Handle error as needed, e.g., show an alert
+                    alert('Failed to delete employee. Please try again.');
+                });
+            }
+        }

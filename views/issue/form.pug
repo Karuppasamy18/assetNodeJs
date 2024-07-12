@@ -1,0 +1,131 @@
+doctype html
+html
+    head
+        title Issue Form
+        script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+            h1 {
+                text-align: center;
+            }
+            form {
+                //- max-width: 400px; /* Uncommented max-width */
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                background-color: #f9f9f9;
+                border-radius: 5px;
+            }
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 10px;
+            }
+            input[type="text"],
+            input[type="email"],
+            input[type="date"],
+            select,
+            button[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            button[type="submit"] {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            button[type="submit"]:hover {
+                background-color: #45a049;
+            }
+            table {
+                width: 80%;
+                margin: 20px auto;
+                border-collapse: collapse;
+                background-color: #fff;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            tr:hover {
+                background-color: #f1f1f1;
+            }
+
+    body
+        h1 Issue Form
+        form(action='/issueCreate' method='POST')
+            label(for='type') Type:
+            select(id='type' name='type' required)
+                option(value='') Select Type
+                option(value='Issue') Issue
+                option(value='Return') Return
+
+            label(for='empId') Employee Name:
+            select(id='empId' name='empId' required)
+                option(value='') Select an employee
+                each emp in empIns
+                    option(value=emp.id)= emp.firstName
+
+            label(for='date') Date:
+            input(type='date' id='date' name='date' required)
+
+            table
+                thead
+                    tr
+                        th SNO
+                        th Asset Name
+                        th Qty
+                        th Stock Qty
+                        th Reason
+                tbody
+                    tr
+                        td 1
+                        td
+                            select(id='assetId' name='assetId' onchange='fetchStockQuantity(this.value)' required)
+                                option(value='') Select an asset
+                                each asset in assetIns
+                                    option(value=asset.id)= asset.assetName
+                        td
+                            input(type='text' id='qty' name='qty' required)
+                        td
+                            input(type='text' id='stockQty' name='stockQty' required)
+                        td
+                            input(type='text' id='reason' name='reason' required)
+
+            button(type='submit') Submit
+
+    script.
+        function fetchStockQuantity(assetId) {
+            if (assetId) {
+                $.ajax({
+                    url: `/getAssetStock/${assetId}`,
+                    method: 'GET',
+                    success: function(response) {
+                        $('#stockQty').val(response.stockQty); // Update input value
+                    },
+                    error: function(err) {
+                        console.error('Error fetching stock quantity:', err);
+                        $('#stockQty').val('Error fetching stock quantity');
+                    }
+                });
+            } else {
+                $('#stockQty').val('');
+            }
+        }

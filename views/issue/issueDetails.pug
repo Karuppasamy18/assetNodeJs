@@ -1,0 +1,63 @@
+doctype html
+html
+    head
+        title Issue Details
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                padding: 20px;
+                background-color: #f4f4f4;
+            }
+            h1, h2 {
+                color: #333;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            a {
+                color: #007BFF;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+    body
+        h1 Issue Details
+        p
+            strong Type:
+            | #{issue.type}
+        p
+            strong Employee:
+            | #{issue.employee.firstName} #{issue.employee.lastName}
+        p
+            strong Reason:
+            | #{issue.reason}
+        p
+            strong Date:
+            | #{issue.date}
+
+        h2 Items
+        table
+            tr
+                th Asset
+                th Quantity
+                 
+            each item in issue.items
+                tr
+                    td #{item.asset.assetName}  
+                    td #{item.qty}
+                     
+
+        p
+            a(href='/issueList') Back to Issues List

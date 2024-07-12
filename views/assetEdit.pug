@@ -1,0 +1,75 @@
+doctype html
+html
+  head
+    title Edit Asset
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        //- max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"],
+      input[type="email"],
+      select, /* Include select tag for styling */
+      button[type="submit"],
+      button[type="button"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover,
+      button[type="button"]:hover {
+        background-color: #45a049;
+      }
+  body
+    h1 Edit Asset
+    form(action=`/editAsset/${asset.id}`, method='POST')
+      label(for='assetName') Asset Name:
+      input(type='text', id='assetName', name='assetName', value=asset.assetName, required)
+      br
+      label(for='assetType') Asset Type:
+      input(type='text', id='assetType', name='assetType', value=asset.category.categoryName, required)
+      br
+      label(for='make') Make:
+      input(type='text', id='make', name='make', value=asset.make)
+      br
+      label(for='model') Model:
+      input(type='text', id='model', name='model', value=asset.model)
+      br
+      label(for='value') unit Rate:
+      input(type='text', id='value', name='value', value=asset.value)
+      br
+      label(for='stockQty') Stock Qty:
+      input(type='text', id='stockQty', name='stockQty', value=asset.stockQty)
+      br
+      label(for='uom') UOM:
+      select(id='uom' name='uom')
+        option(value='KG', selected=(asset.uom === 'KG')) KG
+        option(value='NO', selected=(asset.uom === 'NO')) NO
+        option(value='NOS', selected=(asset.uom === 'NOS')) NOS
+      button(type='submit') Save Changes
+      button(type='button', onclick="location.href='/assetList'") Cancel
