@@ -1,0 +1,63 @@
+doctype html
+html
+  head
+    title Edit Employee
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #b1dbf2;
+        border-radius: 5px;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"],
+      input[type="email"],
+      button[type="submit"],
+      button[type="button"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover,
+      button[type="button"]:hover {
+        background-color: #45a049;
+      }
+  body
+    h1 Edit Employee
+    form(action=`/editEmployee/${employee.id}`, method='POST')
+      label(for='firstName') First Name:
+      input(type='text', id='firstName', name='firstName', value=employee.firstName, required)
+      br
+      label(for='lastName') Last Name:
+      input(type='text', id='lastName', name='lastName', value=employee.lastName, required)
+      br
+      label(for='email') Email:
+      input(type='email', id='email', name='email', value=employee.email, required)
+      br
+      label(for='email') Active:
+      input(type='checkbox' id='subscribe' name='subscribe' value=employee.active checked=employee.active)
+      br
+      button(type='submit') Save Changes
+      button(type='button', onclick="location.href='/empList'") Cancel

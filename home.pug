@@ -1,0 +1,82 @@
+doctype html
+html
+  head
+    title Home
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+    style.
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #b1dbf2;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+      }
+
+      .container {
+        margin-top: 20px;
+      }
+
+      .jumbotron {
+        background-color: #fff;
+        padding: 2rem 2rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .footer {
+        background-color: #f4f4f4;
+        padding: 1rem 0;
+        text-align: center;
+        margin-top: 20px;
+        border-top: 1px solid #ddd;
+      }
+
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      a.navbar-brand(href='#') My Project
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarNav
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            a.nav-link(href='/empList') Employee
+          li.nav-item
+            a.nav-link(href='/assetList') Asset
+          li.nav-item
+            a.nav-link(href='/assetCategoryList') Asset Category
+          li.nav-item
+            a.nav-link(href='/issueList') Issue/Return
+
+    .container
+      .jumbotron
+        h1.display-4 Welcome to My Project!
+        hr.my-4
+        a.btn.btn-primary.btn-lg(href='/empList', role='button') Get Started
+
+      .row
+        .col-md-4
+          h3 Employee Management
+          a.btn.btn-secondary(href='/empList', role='button') Manage Employees
+        .col-md-4
+          h3 Asset Management
+          a.btn.btn-secondary(href='/assetList', role='button') Manage Assets
+        .col-md-4
+          h3 Asset Category
+          a.btn.btn-secondary(href='/assetCategoryList', role='button') Manage Categories
+        .col-md-4
+          h3 Issue/Return
+          a.btn.btn-secondary(href='/issueList', role='button') Issue/Return 
+          .col-md-4
+          h3 StockView
+          a.btn.btn-secondary(href='/stockList', role='button') Stock View 
+
+
+    .footer
+       
+    script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js')

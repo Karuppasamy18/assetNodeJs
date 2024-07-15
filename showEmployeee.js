@@ -1,4 +1,4 @@
-const sequelize = require('./db');  // Import the sequelize instance
+const sequelize = require('../../db');  // Import the sequelize instance
 const Employee = require('./employee');  // Import the Employee model
 
 (async () => {

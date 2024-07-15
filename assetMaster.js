@@ -1,6 +1,6 @@
 // assetMaster.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('./db');
+const sequelize = require('../db');
 const AssetCategoryMaster = require('./assetCategoryMaster');  
 
 const AssetMaster = sequelize.define('AssetMaster', {

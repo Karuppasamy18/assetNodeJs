@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('./db'); // Adjust path as per your project structure
+const sequelize = require('../db'); // Adjust path as per your project structure
 const Employee = require('./employee'); // Assuming correct path to Employee model
 const AssetMaster = require('./assetMaster'); // Assuming correct path to AssetMaster model
 
